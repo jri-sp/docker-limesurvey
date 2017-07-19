@@ -2,7 +2,7 @@ FROM php:7-apache
 
 MAINTAINER Jeremy RICHARD <jri@sciencespo.paris>
 
-ENV LIMESURVEY_VERSION=2.67.1+170626
+ENV LIMESURVEY_VERSION=2.67.2+170719
 
 ENV LIMESURVEY_URL=http://download.limesurvey.org/latest-stable-release/limesurvey${LIMESURVEY_VERSION}.tar.gz
 
