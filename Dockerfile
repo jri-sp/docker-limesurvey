@@ -32,13 +32,21 @@ RUN apt-get update \
     && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Download and install Limesurvey
+# then Move content to Apache root folder
 RUN cd $ROOT_DIR \
-    && curl $LIMESURVEY_URL | tar xvz
+    && curl $LIMESURVEY_URL | tar xvz \
+    && cp -rp $ROOT_DIR/limesurvey/* $ROOT_DIR \
+    && rm -rf $ROOT_DIR/limesurvey  \
+    && chown -R www-data:www-data $ROOT_DIR  
 
-# Move content to Apache root folder
-RUN cp -rp $ROOT_DIR/limesurvey/* $ROOT_DIR && \
-    rm -rf $ROOT_DIR/limesurvey && \
-    chown -R www-data:www-data $ROOT_DIR  
+COPY config.docker.php  $ROOT_DIR/application/config/
+
+COPY entrypoint.sh /entrypoint.sh
 
 VOLUME $ROOT_DIR/upload
-VOLUME $ROOT_DIR/application/config
+
+EXPOSE 80
+
+ENTRYPOINT ["/entrypoint.sh"]
+
+CMD ["apache2-foreground"]
