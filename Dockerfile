@@ -2,9 +2,9 @@ FROM php:7-apache
 
 MAINTAINER Jeremy RICHARD <jri@sciencespo.paris>
 
-ENV LIMESURVEY_VERSION=2.67.2+170719
+ENV LIMESURVEY_VERSION=2.67.2+170728
 
-ENV LIMESURVEY_URL=http://download.limesurvey.org/latest-stable-release/limesurvey${LIMESURVEY_VERSION}.tar.gz
+ENV LIMESURVEY_URL=https://github.com/LimeSurvey/LimeSurvey/archive/${LIMESURVEY_VERSION}.tar.gz
 
 ENV ROOT_DIR=/var/www/html
 
@@ -34,10 +34,8 @@ RUN apt-get update \
 # Download and install Limesurvey
 # then Move content to Apache root folder
 RUN cd $ROOT_DIR \
-    && curl $LIMESURVEY_URL | tar xvz \
-    && cp -rp $ROOT_DIR/limesurvey/* $ROOT_DIR \
-    && rm -rf $ROOT_DIR/limesurvey  \
-    && chown -R www-data:www-data $ROOT_DIR  
+    && curl --location $LIMESURVEY_URL | tar --extract --gunzip --verbose --strip 1 \
+    && chown --recursive www-data:www-data $ROOT_DIR  
 
 COPY config.docker.php  $ROOT_DIR/application/config/
 
