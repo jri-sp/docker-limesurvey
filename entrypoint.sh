@@ -9,7 +9,7 @@ fi
 
 if [ ! -z "$BASE_URI" ]
 then
-  sed -i.original -e '/^<VirtualHost[ ]\*:80>/,/<\/VirtualHost>/ { /<\/VirtualHost>/ i\Alias '"$BASE_URI"' /var/www/html' -e '}' /etc/apache2/sites-enabled/000-default.conf
+  sed -i.original -e '/^<VirtualHost[ ]\*:80>/,/<\/VirtualHost>/ { /<\/VirtualHost>/ i\Alias ${BASE_URI} /var/www/html' -e '}' /etc/apache2/sites-enabled/000-default.conf
 fi
 
 # Hide PHP version
