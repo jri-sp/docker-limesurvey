@@ -13,7 +13,7 @@ then
 fi
 
 # Add ServerName because of bad redirections issues.
-sed -i.original -e '/^<VirtualHost[ ]\*:80>/,/<\/VirtualHost>/ { /<\/VirtualHost>/ i\ServerName localhost' -e '}' /etc/apache2/sites-enabled/000-default.conf
+sed -i.original -e '/^<VirtualHost[ ]\*:80>/,/<\/VirtualHost>/ { /<\/VirtualHost>/ i\ServerName ${PUBLIC_FQDN}' -e '}' /etc/apache2/sites-enabled/000-default.conf
 
 # Hide PHP version
 echo "expose_php=off" >> /usr/local/etc/php/conf.d/security.ini

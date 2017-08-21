@@ -25,6 +25,7 @@ Environment variables are basicaly the ones that can be found in config.php afte
 * `LS_DB_CHARSET` : Charset of you database, depends of your database configuration.
 * `LS_DB_PREFIX` : You can add an optional prefix, depends on how your tables have been created.
 * `BASE_URI` : Alias URI after the domain. (e.g. "/limesurvey" )
+* `PUBLIC_FQDN` : Public domain in case of reverse proxy
 
 # To Do
 
