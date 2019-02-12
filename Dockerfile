@@ -2,7 +2,7 @@ FROM php:7.3-apache-stretch
 
 MAINTAINER Jeremy RICHARD <jri@sciencespo.paris>
 
-ENV LIMESURVEY_VERSION=2.67.2+170728
+ENV LIMESURVEY_VERSION=2.73.0+171219
 
 ENV LIMESURVEY_URL=https://github.com/LimeSurvey/LimeSurvey/archive/${LIMESURVEY_VERSION}.tar.gz
 
