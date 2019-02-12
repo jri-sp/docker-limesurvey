@@ -18,6 +18,10 @@ sed -i.original -e '/^<VirtualHost[ ]\*:80>/,/<\/VirtualHost>/ { /<\/VirtualHost
 # Hide PHP version
 echo "expose_php=off" >> /usr/local/etc/php/conf.d/security.ini
 
+# File upload max size
+echo "upload_max_filesize=${PHP_UPLOAD_FILE_LIMIT:-2M}" >> /usr/local/etc/php/conf.d/upload.ini
+echo "post_max_size=${PHP_UPLOAD_FILE_LIMIT:-2M}" >> /usr/local/etc/php/conf.d/upload.ini
+
 # Apache things
 # Hide version
 sed -i "s/^ServerTokens OS$/ServerTokens Prod/" /etc/apache2/conf-available/security.conf
